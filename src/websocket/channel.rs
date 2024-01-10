@@ -44,6 +44,8 @@ pub enum Channel {
     },
     #[serde(rename = "tickers")]
     Tickers {
+        #[serde(rename = "instType")]
+        inst_type: Option<InstType>,
         #[serde(rename = "instId")]
         inst_id: String,
     },
@@ -77,8 +79,9 @@ impl Channel {
         Self::Instruments { inst_type }
     }
 
-    pub fn tickers(inst_id: &str) -> Self {
+    pub fn tickers(inst_type: InstType, inst_id: &str) -> Self {
         Self::Tickers {
+            inst_type: Some(inst_type),
             inst_id: inst_id.into(),
         }
     }

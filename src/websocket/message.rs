@@ -19,6 +19,8 @@ pub enum Message<Row = Value> {
     Event {
         event: String,
         arg: Channel,
+        #[serde(rename = "connId")]
+        conn_id: String
     },
     Login {
         event: LoginLiteral,
